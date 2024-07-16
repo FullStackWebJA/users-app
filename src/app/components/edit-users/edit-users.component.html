@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="col-md-6 m-4">
+    <div class="shadow-lg p-3 mb-2 bg-body rounded">
+      <h4>Edit User with ID : {{ editUser?.user_Id }}</h4>
+    </div>
+    <hr />
+    <form class="shadow-lg p-3 mb-2 bg-body rounded" #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="userName-addOn">User Name</span>
+        <input
+          type="text"
+          name="userName"
+          [(ngModel)]="editUser!.user_Name"
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="userName-addOn"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="email-addOn">Email Address</span>
+        <input
+          type="text"
+          name="emailAddress"
+          [(ngModel)]="editUser!.email_address"
+          class="form-control"
+          placeholder="Email address"
+          aria-label="email"
+          aria-describedby="email-addOn"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="genderSelection">Gender</label>
+        <select class="form-select" id="genderSelection"  name="genderSelect" [(ngModel)]="editUser!.gender">
+          @for (gender of GENDERS; track gender.value) {
+            <option [value]="gender.value">{{ gender.gender }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="designationSelect">Designation</label>
+        <select class="form-select" id="designationSelect"  name="designationSelect" [(ngModel)]="editUser!.designation">
+            @for (designation of DESIGNATIONS; track designation.value) {
+                <option [value]="designation.value">{{ designation.designation }}</option>
+            }
+        </select>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="activeUser"
+          id="activeUser1"
+          [value]="true" 
+          [(ngModel)]="editUser!.active"
+        />
+        <label class="form-check-label" for="activeUser1"> Active User </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="activeUser"
+          id="activeUser2"
+          [value]="false" 
+          [(ngModel)]="editUser!.active"
+        />
+        <label class="form-check-label" for="activeUser2">
+          Inactive User
+        </label>
+      </div>
+
+      <div class="container mt-3">
+        <button class="btn btn-success col-md-4">
+          <i class="bi bi-save"></i> Save
+        </button>
+        <span class="m-4"> | </span>
+        <button class="btn btn-warning col-md-4" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i> Back
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

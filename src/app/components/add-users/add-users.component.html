@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <div class="col-md-6 m-4">
+    <div class="shadow-lg p-3 mb-2 bg-body rounded">
+      <h4>Add New User</h4>
+    </div>
+    <hr />
+    <form
+      class="shadow-lg p-3 mb-2 bg-body rounded"
+      #addForm="ngForm"
+      (ngSubmit)="onSubmit(addForm)"
+    >
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="userName-addOn">User Name</span>
+        <input
+          type="text"
+          name="userName"
+          ngModel
+          class="form-control"
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="userName-addOn"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="email-addOn">Email Address</span>
+        <input
+          type="text"
+          name="emailAddress"
+          ngModel
+          class="form-control"
+          placeholder="Email address"
+          aria-label="email"
+          aria-describedby="email-addOn"
+        />
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="genderSelection">Gender</label>
+        <select
+          class="form-select"
+          id="genderSelection"
+          name="genderSelect"
+          ngModel
+        >
+          <option [value]="''">Gender ...</option>
+          @for (gender of GENDERS; track gender.value) {
+          <option [value]="gender.value">{{ gender.gender }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="designationSelect"
+          >Designation</label
+        >
+        <select
+          class="form-select"
+          id="designationSelect"
+          name="designationSelect"
+          ngModel
+        >
+          <option [value]="''">Designation ...</option>
+          @for (designation of DESIGNATIONS; track designation.value) {
+          <option [value]="designation.value">
+            {{ designation.designation }}
+          </option>
+          }
+        </select>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="activeUser"
+          ngModel
+          id="activeUser1"
+          [value]="true"
+        />
+        <label class="form-check-label" for="activeUser1"> Active User </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="activeUser"
+          ngModel
+          id="activeUser2"
+          [value]="false"
+        />
+        <label class="form-check-label" for="activeUser2">
+          Inactive User
+        </label>
+      </div>
+
+      <div class="container mt-3">
+        <button class="btn btn-success col-md-4">
+          <i class="bi bi-save"></i> Save
+        </button>
+        <span class="m-4"> | </span>
+        <button class="btn btn-warning col-md-4" (click)="goBack()">
+          <i class="bi bi-arrow-left"></i> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

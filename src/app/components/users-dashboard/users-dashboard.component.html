@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="shadow-lg p-3 mb-3 bg-body rounded"><h4>Dashboard for User Management</h4></div>
+  <hr />
+  
+  <table class="table table-hover shadow-lg p-3 mb-5 bg-body rounded">
+    <thead>
+      <tr>
+        @for (column of USER_DATA_COLUMNS; track column.columnName) {
+        <th scope="col" class="text-center">{{ column.columnName }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      
+        @for (user of dataSource() ; track user.user_Id) {
+      <tr>
+        <!-- <th scope="row">{{ user.user_Id }}</th> -->
+        <td class="text-center">{{ user.user_Name }}</td>
+        <td class="text-center">{{ user.email_address }}</td>
+        <td class="text-center">{{ user.gender }}</td>
+        <td class="text-center">{{ user.designation }}</td>
+        <td class="text-center">{{ user.active }}</td>
+        <td class="text-center">
+          <button type="button" class="btn btn-primary" (click)="editUser(user.user_Id)">
+            <i class="bi bi-pencil"></i> Edit
+          </button>
+          <strong> | </strong>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(user.user_Id)">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+      }
+
+    </tbody>
+  </table>
+  <hr />
+  <button type="button" class="btn btn-success col-md-6 offset-md-3 shadow-lg p-2 mb-3 rounded" (click)="addUser()">
+    <i class="bi bi-plus"></i> Add new user
+  </button>
+</div>
